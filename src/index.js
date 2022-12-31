@@ -70,11 +70,14 @@ client.on('ready', () => {
 });
 
 const content = JSON.parse(readFileSync('./timezones.json', 'utf-8'));
-const timezones = new Map();
+let timezones = new Map();
 for (const timezone of Intl.supportedValuesOf('timeZone')) {
     if (content.find(c => c.offset === getTimezoneOffset(timezone))) continue;
 
     timezones.set(getTimezoneOffset(timezone), timezone);
 }
+
+// sort timezones by offset
+timezones = new Map([...timezones.entries()].sort((a, b) => a[0] - b[0]));
 
 client.login(process.env.TOKEN);
