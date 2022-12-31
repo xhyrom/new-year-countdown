@@ -29,7 +29,7 @@ client.on('ready', () => {
             }
     
             if (currentTime.year() === 2023) {
-                client.channels.cache.get('1058696238444335154').threads.cache.get('1058699350076837928').send(`Happy New Year ${timezone} (${formattedUtcOffset})`)
+                client.channels.cache.get('1058696238444335154').threads.cache.get('1058699350076837928').send(`Happy New Year **${timezone} (${formattedUtcOffset})**`)
                 timezones.delete(getTimezoneOffset(timezone));
     
                 const oldContent = JSON.parse(readFileSync('timezones.json', 'utf-8'));
