@@ -62,9 +62,11 @@ client.on('ready', () => {
             })
         }
 
+        let messageForDeleteTwo = await client.channels.cache.get('1058696238444335154').send(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
+    
         if (messageForDelete) messageForDelete.delete();
 
-        messageForDelete = await client.channels.cache.get('1058696238444335154').send(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
+        messageForDelete = messageForDeleteTwo;
     }, 1000);
 });
 
