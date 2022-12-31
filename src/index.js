@@ -4,6 +4,7 @@ import { IntentsBitField } from 'discord.js';
 import { readFileSync, writeFileSync } from 'node:fs';
 import getTimezoneOffset from './getTimezoneOffset.js';
 import moment from 'moment-timezone';
+import numberPad from './numberPad.js';
 
 let messageForEdit = null;
 
@@ -25,9 +26,9 @@ client.on('ready', () => {
     
             let formattedUtcOffset = "UTC";
             if (utcOffset > 0) {
-                formattedUtcOffset += "+" + utcOffsetHours + ":" + utcOffsetMinutes;
+                formattedUtcOffset += "+" + utcOffsetHours + ":" + numberPad(utcOffsetMinutes);
             } else {
-                formattedUtcOffset += "-" + Math.abs(utcOffsetHours) + ":" + utcOffsetMinutes;
+                formattedUtcOffset += "-" + Math.abs(utcOffsetHours) + ":" + numberPad(utcOffsetMinutes);
             }
     
             if (currentTime.year() === 2023) {
