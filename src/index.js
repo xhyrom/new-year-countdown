@@ -66,7 +66,7 @@ client.on('ready', () => {
         } else {
             messageForEdit.edit(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
         }
-    }, 1000);
+    }, 2000);
 });
 
 const content = JSON.parse(readFileSync('./timezones.json', 'utf-8'));
