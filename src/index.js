@@ -5,6 +5,8 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import getTimezoneOffset from './getTimezoneOffset.js';
 import moment from 'moment-timezone';
 
+let messageForEdit = null;
+
 const client = new Client({
     intents: [IntentsBitField.Flags.Guilds]
 });
@@ -12,7 +14,7 @@ const client = new Client({
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 
-    setInterval(() => {
+    setInterval(async() => {
         const cooldowns = [];
 
         for (const timezone of timezones.values()) {
@@ -59,7 +61,11 @@ client.on('ready', () => {
             })
         }
 
-        client.channels.cache.get('1058696238444335154').send(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
+        if (!messageForEdit) {
+            messageForEdit = await client.channels.cache.get('1058696238444335154').send(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
+        } else {
+            messageForEdit.edit(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
+        }
     }, 1000);
 });
 
