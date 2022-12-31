@@ -6,8 +6,6 @@ import getTimezoneOffset from './getTimezoneOffset.js';
 import moment from 'moment-timezone';
 import numberPad from './numberPad.js';
 
-let messageForDelete = null;
-
 const client = new Client({
     intents: [IntentsBitField.Flags.Guilds]
 });
@@ -62,11 +60,7 @@ client.on('ready', () => {
             })
         }
 
-        let messageForDeleteTwo = await client.channels.cache.get('1058696238444335154').send(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
-    
-        if (messageForDelete) messageForDelete.delete();
-
-        messageForDelete = messageForDeleteTwo;
+        client.channels.cache.get('1058696238444335154').send(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
     }, 1000);
 });
 
