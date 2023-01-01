@@ -66,7 +66,7 @@ client.on('ready', () => {
 
 const content = JSON.parse(readFileSync('./timezones.json', 'utf-8'));
 let timezones = new Map();
-for (const timezone of Intl.supportedValuesOf('timeZone')) {
+for (const timezone of [...Intl.supportedValuesOf('timeZone') , 'Etc/GMT+12']) {
     if (content.find(c => c.offset === getTimezoneOffset(timezone))) continue;
 
     timezones.set(getTimezoneOffset(timezone), timezone);
