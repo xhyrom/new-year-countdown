@@ -60,6 +60,7 @@ client.on('ready', () => {
             })
         }
 
+        if (cooldowns.length === 0) return;
         client.channels.cache.get('1058696238444335154').send(cooldowns.map(({ timezone, offset, hours, minutes, seconds }) => `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`).join('\n'));
     }, 1000);
 });
