@@ -5,12 +5,11 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js"
   },
   "keywords": [],
   "author": "xHyroM",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
