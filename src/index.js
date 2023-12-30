@@ -73,8 +73,6 @@ client.on("ready", () => {
                 `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`
             )
             .join("\n"),
-          "",
-          "Stay tuned as we continue to count down the hours, minutes, and seconds to the New Year in each timezone! 🕛",
         ].join("\n")
       );
   }, 5000);
