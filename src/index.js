@@ -12,6 +12,8 @@ const client = new Client({
   intents: [IntentsBitField.Flags.Guilds],
 });
 
+let oldMessage;
+
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 
@@ -63,7 +65,25 @@ client.on("ready", () => {
     }
 
     if (cooldowns.length === 0) return;
-    client.channels.cache
+    if (oldMessage != null) {
+      oldMessage.edit(
+        [
+          "🎉 As we eagerly await the arrival of the New Year, let's check in on the countdown times across the globe! 🌍",
+          "",
+          cooldowns
+            .map(
+              ({ timezone, offset, days, hours, minutes, seconds }) =>
+                `**${timezone}** (**${offset}**): ${
+                  days > 0 ? `${days}d ` : ""
+                }${hours}h ${minutes}m ${seconds}s`
+            )
+            .join("\n"),
+        ].join("\n")
+      );
+      return;
+    }
+
+    oldMessage = await client.channels.cache
       .get("1058696238444335154")
       .send(
         [
