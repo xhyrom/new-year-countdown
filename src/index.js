@@ -47,6 +47,7 @@ client.on("ready", () => {
       const newYearEve = moment().tz(timezone).endOf("year").format();
 
       const countdown = moment.duration(moment(newYearEve).diff(currentTime));
+      const days = countdown.days();
       const hours = countdown.hours();
       const minutes = countdown.minutes();
       const seconds = countdown.seconds();
@@ -54,6 +55,7 @@ client.on("ready", () => {
       cooldowns.push({
         timezone,
         offset: formattedUtcOffset,
+        days,
         hours,
         minutes,
         seconds,
@@ -69,8 +71,10 @@ client.on("ready", () => {
           "",
           cooldowns
             .map(
-              ({ timezone, offset, hours, minutes, seconds }) =>
-                `**${timezone}** (**${offset}**): ${hours}h ${minutes}m ${seconds}s`
+              ({ timezone, offset, days, hours, minutes, seconds }) =>
+                `**${timezone}** (**${offset}**): ${
+                  days > 0 ? `${days}d ` : ""
+                }${hours}h ${minutes}m ${seconds}s`
             )
             .join("\n"),
         ].join("\n")
