@@ -1,5 +1,5 @@
-const EXPECTED_YEAR = 2024;
-const NEW_YEAR_MESSAGE_THREAD_ID = "1190740707984543804";
+const EXPECTED_YEAR = 2025;
+const NEW_YEAR_MESSAGE_THREAD_ID = "1323426582681092261";
 
 import "dotenv/config";
 import { Client } from "discord.js";
@@ -40,7 +40,7 @@ client.on("ready", () => {
           .get("1058696238444335154")
           .threads.cache.get(NEW_YEAR_MESSAGE_THREAD_ID)
           .send(
-            `🎉🥂 Happy New Year 🥂🎉 to all our friends in **${timezone} (${formattedUtcOffset})**! May the coming year be filled with joy, prosperity, and happiness. 🌟🎆`
+            `🎉🥂 Happy New Year 🥂🎉 to all our friends in **${timezone} (${formattedUtcOffset})**! May the coming year be filled with joy, prosperity, and happiness. 🌟🎆`,
           );
         timezones.delete(getTimezoneOffset(timezone));
         continue;
@@ -75,10 +75,10 @@ client.on("ready", () => {
               ({ timezone, offset, days, hours, minutes, seconds }) =>
                 `**${timezone}** (**${offset}**): ${
                   days > 0 ? `${days}d ` : ""
-                }${hours}h ${minutes}m ${seconds}s`
+                }${hours}h ${minutes}m ${seconds}s`,
             )
             .join("\n"),
-        ].join("\n")
+        ].join("\n"),
       );
       return;
     }
@@ -94,10 +94,10 @@ client.on("ready", () => {
               ({ timezone, offset, days, hours, minutes, seconds }) =>
                 `**${timezone}** (**${offset}**): ${
                   days > 0 ? `${days}d ` : ""
-                }${hours}h ${minutes}m ${seconds}s`
+                }${hours}h ${minutes}m ${seconds}s`,
             )
             .join("\n"),
-        ].join("\n")
+        ].join("\n"),
       );
   }, 5000);
 });
